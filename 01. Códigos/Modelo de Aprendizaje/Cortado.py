@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 
-def recortar_botella_dinamico(imagen_bgr_original, bbox, margen=30):
+def recortar_botella_dinamico(imagen_bgr_original, bbox, margen=20):
     """
     Recorta la región de interés (ROI) de la botella usando su Bounding Box.
     Añade un margen de seguridad (padding) para no perder bordes en la IA.
