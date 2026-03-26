@@ -55,7 +55,7 @@ def inspeccionar_botella(ruta_foto_camara):
 # ==========================================
 if __name__ == "__main__":
     # Simula que la cámara acaba de tomar esta foto y te la mandó
-    foto_cruda = r"C:\Users\leona\Documents\PPP_Aranjuez\01. Codigos\Imagenes_Pruebas\Botellas_Buenas\B_B0001.JPG" # Ajusta al nombre de tu foto
+    foto_cruda = r"C:\Users\leona\Documents\PPP_Aranjuez\01. Codigos\Imagenes_Pruebas\Botellas_Malas\B_M0001.JPG" # Ajusta al nombre de tu foto
     
     # Ejecutamos la función
     resultado = inspeccionar_botella(foto_cruda)

@@ -4,6 +4,7 @@ def procesar_imagen(imagen_recortada,tamano_final = (224,224)):
     if imagen_recortada is None:
         return None
     
+    imagen_procesada = imagen_recortada
     # Filtro Gausseano
     # Un kernel de (5,5) 
     imagen_procesada = cv2.GaussianBlur(imagen_procesada,(5,5),0)
