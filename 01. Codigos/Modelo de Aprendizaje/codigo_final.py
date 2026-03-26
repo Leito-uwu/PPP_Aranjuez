@@ -18,7 +18,7 @@ def inspeccionar_botella(ruta_foto_camara):
     y devuelve directamente el string 'BUENA' o 'MALA'.
     """
     # 1. La cámara entrega la foto cruda
-    imagen_cruda = cv2.imread(ruta_foto_camara)
+    imagen_cruda = cv2.imread(ruta_foto_camara, cv2.IMREAD_GRAYSCALE)
     if imagen_cruda is None:
         return "ERROR: No se pudo leer la foto"
 

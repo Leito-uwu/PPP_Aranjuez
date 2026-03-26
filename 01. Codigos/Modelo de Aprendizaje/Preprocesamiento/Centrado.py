@@ -12,8 +12,8 @@ def trabajar_con_contorno_blanco(imagen_bgr_original):
     centro_foto_x = nuevo_ancho // 2
     centro_foto_y = nuevo_alto // 2
 
-    # Escala de Grises
-    gris = cv2.cvtColor(imagen_trabajo, cv2.COLOR_BGR2GRAY)
+    gris = imagen_trabajo
+    
     gris_suavizado = cv2.medianBlur(gris, 15)
 
     # Binarización Adaptativa (Convierte el cuello negro a blanco)
