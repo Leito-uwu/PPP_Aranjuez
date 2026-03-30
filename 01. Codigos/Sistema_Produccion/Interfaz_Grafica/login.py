@@ -35,8 +35,9 @@ class PantallaLogin(ctk.CTk):
         
         usuarios_db = cargar_usuarios() # Leemos del JSON
 
+        # En tu login.py, busca esta parte y déjala así:
         if usuario in usuarios_db and usuarios_db[usuario] == password:
-            self.destroy() # Cerramos el login
-            self.on_login_success() # Ejecutamos la función para abrir el menú
+            self.withdraw() # <--- ¡CAMBIA DESTROY POR WITHDRAW!
+            self.on_login_success()
         else:
             self.label_mensaje.configure(text="❌ Credenciales incorrectas", text_color="red")
