@@ -3,9 +3,11 @@ import os
 from PIL import Image
 
 class PantallaInspeccion(ctk.CTkToplevel):
-    def __init__(self, on_volver):
+    # 🟢 AÑADIMOS formato_actual y on_cambio_formato
+    def __init__(self, on_volver, formato_actual, on_cambio_formato):
         super().__init__()
-        self.on_volver = on_volver # Función para regresar al menú
+        self.on_volver = on_volver 
+        self.on_cambio_formato = on_cambio_formato # El cable hacia main.py
         
         self.title("Configuración de Botellas - Milcast Corp")
         self.geometry("650x500")
@@ -36,14 +38,17 @@ class PantallaInspeccion(ctk.CTkToplevel):
         self.separador.pack(fill="x", padx=20, pady=(0, 20))
 
         # --- CUERPO ---
-        self.label_instruccion = ctk.CTkLabel(self, text="Seleccione el formato de botella a inspeccionar:", font=("Roboto", 14), text_color="gray")
+        self.label_instruccion = ctk.CTkLabel(self, text="Seleccione el formato a inspeccionar:", font=("Roboto", 14), text_color="gray")
         self.label_instruccion.pack(pady=(10, 20))
 
         opciones_botellas = ["Botella Tipo A", "Botella Tipo B", "Botella Tipo C", "Botella Tipo D", "Botella Tipo E"]
         self.selector_formato = ctk.CTkOptionMenu(self, values=opciones_botellas, command=self.al_cambiar_formato, width=250, height=40, font=("Roboto", 14))
         self.selector_formato.pack(pady=10)
+        
+        # 🟢 HACEMOS QUE EL SELECTOR EMPIECE EN EL FORMATO GUARDADO
+        self.selector_formato.set(formato_actual)
 
-        self.label_estado = ctk.CTkLabel(self, text="Formato actual: Botella Tipo A", font=("Roboto", 16), text_color="yellow")
+        self.label_estado = ctk.CTkLabel(self, text=f"Formato actual: {formato_actual}", font=("Roboto", 16), text_color="yellow")
         self.label_estado.pack(pady=20)
 
         self.btn_arrancar = ctk.CTkButton(self, text="ARRANCAR INSPECCIÓN", width=250, height=50, font=("Roboto", 16, "bold"), fg_color="green", hover_color="darkgreen")
@@ -51,7 +56,9 @@ class PantallaInspeccion(ctk.CTkToplevel):
 
     def al_cambiar_formato(self, eleccion):
         self.label_estado.configure(text=f"Formato actual: {eleccion}")
+        # 🟢 LE AVISAMOS AL MAIN.PY QUE CAMBIAMOS DE BOTELLA
+        self.on_cambio_formato(eleccion)
 
     def cerrar_ventana(self):
         self.destroy()
-        self.on_volver() # Avisa al main.py que debe mostrar el Dashboard de nuevo
+        self.on_volver()
